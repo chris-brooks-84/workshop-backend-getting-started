@@ -63,6 +63,9 @@ const resolvers = {
     },
 
     durationInSeconds: ({ length }) => length,
+    numberOfLikes: ({ id }) => {
+      return likes[id] || 0;
+    },
   },
   Module: {
     durationInSeconds: ({ length }) => length,
