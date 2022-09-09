@@ -9,23 +9,12 @@ type Query {
 
 type Mutation {
   "Increment the number of views of a given track, when the track card is clicked"
-  incrementTrackViews(id: ID!): IncrementTrackViewsResponse!
+  incrementTrackViews(id: ID!): TrackMutationResponse!
   "Like a specific track"
-  likeTrack(trackId: ID!): LikeTrackResponse!
+  likeTrack(trackId: ID!): TrackMutationResponse!
 }
 
-type LikeTrackResponse {
-  "Similar to HTTP status code, represents the status of the mutation"
-  code: Int!
-  "Indicates whether the mutation was successful"
-  success: Boolean!
-  "Human-readable message for the UI"
-  message: String!
-  "Newly updated track after a successful mutation"
-  track: Track
-}
-
-type IncrementTrackViewsResponse {
+type TrackMutationResponse {
   "Similar to HTTP status code, represents the status of the mutation"
   code: Int!
   "Indicates whether the mutation was successful"
