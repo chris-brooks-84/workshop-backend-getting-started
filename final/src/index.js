@@ -13,6 +13,8 @@ const server = new ApolloServer({
       trackAPI: new TrackAPI(),
     };
   },
+  // For workshop demo purposes, we are setting introspection to true. This allows Apollo Sandbox to query the API.
+  introspection: true
 });
 
 server.listen({ port: process.env.PORT || 4000 }).then(({ port, url }) => {
