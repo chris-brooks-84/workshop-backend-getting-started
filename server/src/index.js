@@ -1,8 +1,9 @@
 const { ApolloServer, gql } = require('apollo-server');
-const { readFileSync } = require('fs');
-const mocks = require('./mocks');
 
+const { readFileSync } = require('fs');
 const typeDefs = gql(readFileSync('./src/schema.graphql', { encoding: 'utf-8' }));
+
+const mocks = require('./mocks');
 
 const server = new ApolloServer({
   typeDefs,
