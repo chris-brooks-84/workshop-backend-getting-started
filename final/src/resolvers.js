@@ -61,14 +61,9 @@ const resolvers = {
     modules: ({ id }, _, { dataSources }) => {
       return dataSources.catstronautsAPI.getTrackModules(id);
     },
-
-    durationInSeconds: ({ length }) => length,
     numberOfLikes: ({ id }) => {
       return likes[id] || 0;
     },
-  },
-  Module: {
-    durationInSeconds: ({ length }) => length,
   },
 };
 
