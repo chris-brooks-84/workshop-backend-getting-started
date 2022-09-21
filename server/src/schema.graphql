@@ -1,3 +1,7 @@
 type Query {
+  """
+  This is just a placeholder for the starter code.
+  Delete it once you're able to run a test query in Sandbox!
+  """
   deleteMe: String
 }

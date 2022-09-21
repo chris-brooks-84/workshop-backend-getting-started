@@ -5,17 +5,17 @@ const resolvers = {
   Query: {
     // returns an array of Tracks that will be used to populate the homepage grid of our web client
     tracksForHome: (_, __, { dataSources }) => {
-      return dataSources.trackAPI.getTracksForHome();
+      return dataSources.catstronautsAPI.getTracksForHome();
     },
 
     // get a single track by ID, for the track page
     track: (_, { id }, { dataSources }) => {
-      return dataSources.trackAPI.getTrack(id);
+      return dataSources.catstronautsAPI.getTrack(id);
     },
 
     // get a single module by ID, for the module detail page
     module: (_, { id }, { dataSources }) => {
-      return dataSources.trackAPI.getModule(id);
+      return dataSources.catstronautsAPI.getModule(id);
     },
   },
   Mutation: {
@@ -36,7 +36,7 @@ const resolvers = {
     // increments a track's numberOfViews property
     incrementTrackViews: async (_, { id }, { dataSources }) => {
       try {
-        const track = await dataSources.trackAPI.incrementTrackViews(id);
+        const track = await dataSources.catstronautsAPI.incrementTrackViews(id);
         return {
           code: 200,
           success: true,
@@ -55,20 +55,15 @@ const resolvers = {
   },
   Track: {
     author: ({ authorId }, _, { dataSources }) => {
-      return dataSources.trackAPI.getAuthor(authorId);
+      return dataSources.catstronautsAPI.getAuthor(authorId);
     },
 
     modules: ({ id }, _, { dataSources }) => {
-      return dataSources.trackAPI.getTrackModules(id);
+      return dataSources.catstronautsAPI.getTrackModules(id);
     },
-
-    durationInSeconds: ({ length }) => length,
     numberOfLikes: ({ id }) => {
       return likes[id] || 0;
     },
-  },
-  Module: {
-    durationInSeconds: ({ length }) => length,
   },
 };
 

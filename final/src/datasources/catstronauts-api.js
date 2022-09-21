@@ -1,6 +1,6 @@
 const { RESTDataSource } = require('apollo-datasource-rest');
 
-class TrackAPI extends RESTDataSource {
+class CatstronautsAPI extends RESTDataSource {
   constructor() {
     super();
     // the Catstronauts catalog is hosted on this server
@@ -32,4 +32,4 @@ class TrackAPI extends RESTDataSource {
   }
 }
 
-module.exports = TrackAPI;
+module.exports = CatstronautsAPI;
