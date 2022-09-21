@@ -30,6 +30,10 @@ class CatstronautsAPI extends RESTDataSource {
   incrementTrackViews(trackId) {
     return this.patch(`track/${trackId}/numberOfViews`);
   }
+
+  incrementTrackLikes(trackId) {
+    return this.patch(`track/${trackId}/numberOfLikes`);
+  }
 }
 
 module.exports = CatstronautsAPI;
