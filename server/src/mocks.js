@@ -1,4 +1,7 @@
 module.exports = {
+  Query: () => ({
+    deleteMe: "Hello I am an example to be deleted!"
+  }),
   Track: () => ({
     id: () => 'track_01',
     title: () => 'Astro Kitty, Space Explorer',
