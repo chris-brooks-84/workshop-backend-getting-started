@@ -36,13 +36,13 @@ const resolvers = {
       }
     },
     // increments a track's numberOfViews property
-    incrementTrackViews: async (_, { id }, { dataSources }) => {
+    incrementTrackViews: async (_, { trackId }, { dataSources }) => {
       try {
-        const track = await dataSources.catstronautsAPI.incrementTrackViews(id);
+        const track = await dataSources.catstronautsAPI.incrementTrackViews(trackId);
         return {
           code: 200,
           success: true,
-          message: `Successfully incremented number of views for track ${id}`,
+          message: `Successfully incremented number of views for track ${trackId}`,
           track,
         };
       } catch (err) {

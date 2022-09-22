@@ -9,7 +9,7 @@ type Query {
 
 type Mutation {
   "Increment the number of views of a given track, when the track card is clicked"
-  incrementTrackViews(id: ID!): TrackMutationResponse!
+  incrementTrackViews(trackId: ID!): TrackMutationResponse!
   "Like a specific track"
   likeTrack(trackId: ID!): TrackMutationResponse!
 }
