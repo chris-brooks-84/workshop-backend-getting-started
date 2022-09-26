@@ -1,39 +1,44 @@
-const { RESTDataSource } = require('apollo-datasource-rest');
+import { RESTDataSource } from "@apollo/datasource-rest";
 
-class CatstronautsAPI extends RESTDataSource {
+export class CatstronautsAPI extends RESTDataSource {
   constructor() {
     super();
     // the Catstronauts catalog is hosted on this server
-    this.baseURL = 'https://odyssey-lift-off-rest-api.herokuapp.com/';
+    this.baseURL = "https://odyssey-lift-off-rest-api.herokuapp.com/";
   }
 
+  // retrieves a list of tracks
   getAllTracks() {
-    return this.get('tracks');
+    return this.get("tracks");
   }
 
-  getAuthor(authorId) {
-    return this.get(`author/${authorId}`);
-  }
-
+  // find track by ID
   getTrack(trackId) {
     return this.get(`track/${trackId}`);
   }
 
+  // retrieves the list of modules for a given track
   getTrackModules(trackId) {
     return this.get(`track/${trackId}/modules`);
   }
 
-  getModule(moduleId) {
-    return this.get(`module/${moduleId}`);
-  }
-
+  // increases the number of views for a track by 1
   incrementTrackViews(trackId) {
     return this.patch(`track/${trackId}/numberOfViews`);
   }
 
+  // increases the number of likes for a track by 1
   incrementTrackLikes(trackId) {
     return this.patch(`track/${trackId}/numberOfLikes`);
   }
-}
 
-module.exports = CatstronautsAPI;
+  // find author by ID
+  getAuthor(authorId) {
+    return this.get(`author/${authorId}`);
+  }
+
+  // find module by ID
+  getModule(moduleId) {
+    return this.get(`module/${moduleId}`);
+  }
+}
