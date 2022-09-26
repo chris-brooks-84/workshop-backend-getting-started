@@ -25,4 +25,3 @@ export const mocks = {
       "https://www.youtube.com/watch?v=dwLI70eP3mw&list=PLpi1lPB6opQzKiVK8tgVMyHWThqdCsnvO",
   }),
 };
-
