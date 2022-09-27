@@ -1,6 +1,6 @@
-module.exports = {
+export const mocks = {
   Track: () => ({
-    id: () => "track_01",
+    id: () => "c_0",
     title: () => "Astro Kitty, Space Explorer",
     thumbnail: () =>
       "https://res.cloudinary.com/dety84pbu/image/upload/v1598465568/nebula_cat_djkt9r.jpg",
@@ -10,13 +10,13 @@ module.exports = {
     numberOfLikes: () => 14,
   }),
   Author: () => ({
-    id: () => "author_01",
+    id: () => "cat-1",
     name: () => "Grumpy Cat",
     photo: () =>
       "https://res.cloudinary.com/dety84pbu/image/upload/v1606816219/kitty-veyron-sm_mctf3c.jpg",
   }),
   Module: () => ({
-    id: () => "module_01",
+    id: () => "l_0",
     title: () => "How to get to the moon",
     length: () => "42",
     content: () =>

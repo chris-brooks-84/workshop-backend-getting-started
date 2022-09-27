@@ -1,24 +1,28 @@
-const { ApolloServer, gql } = require('apollo-server');
-const { readFileSync } = require('fs');
+import { readFileSync }  from  'fs';
+import { ApolloServer }  from '@apollo/server';
+import { startStandaloneServer }  from '@apollo/server/standalone';
+import gql  from 'graphql-tag';
+import { CatsAPI } from './datasources/cats-api.js';
+import { resolvers } from './resolvers.js';
 
 const typeDefs = gql(readFileSync('./src/schema.graphql', { encoding: 'utf-8' }));
-const resolvers = require('./resolvers');
-const CatstronautsAPI = require('./datasources/catstronauts-api');
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
-  dataSources: () => {
+  resolvers
+});
+
+
+const { url } = await startStandaloneServer(server, {
+  context: async () => {
+    const { cache } = server; 
     return {
-      catstronautsAPI: new CatstronautsAPI(),
+      dataSources: {
+        catsAPI: new CatsAPI({ cache })
+      },
     };
   },
 });
 
-server.listen({ port: process.env.PORT || 4000 }).then(({ port, url }) => {
-  console.log(`
-    🚀  Server is running
-    🔉  Listening on port ${port}
-    📭  Query at ${url}
-  `);
-});
+
+console.log(`🚀  Server ready at ${url}`);
