@@ -1,19 +1,25 @@
-const { ApolloServer, gql } = require('apollo-server');
+import { readFileSync } from "fs";
+import { ApolloServer } from "@apollo/server";
+import { startStandaloneServer } from "@apollo/server/standalone";
+import gql from "graphql-tag";
 
-const { readFileSync } = require('fs');
-const typeDefs = gql(readFileSync('./src/schema.graphql', { encoding: 'utf-8' }));
+import { addMocksToSchema } from "@graphql-tools/mock";
+import { makeExecutableSchema } from "@graphql-tools/schema";
+import { mocks } from "./mocks.js";
 
-const mocks = require('./mocks');
+const typeDefs = gql(
+  readFileSync("./src/schema.graphql", { encoding: "utf-8" })
+);
 
 const server = new ApolloServer({
-  typeDefs,
-  mocks
+  schema: addMocksToSchema({
+    schema: makeExecutableSchema({ typeDefs }),
+    mocks,
+  }),
 });
 
-server.listen({ port: process.env.PORT || 4000 }).then(({ port, url }) => {
-  console.log(`
-    🚀  Server is running
-    🔉  Listening on port ${port}
-    📭  Query at ${url}
-  `);
+const { url } = await startStandaloneServer(server, {
+  listen: { port: process.env.PORT || 4000 },
 });
+
+console.log(`🚀  Server ready at ${url}`);
