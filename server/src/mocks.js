@@ -1,4 +1,7 @@
 export const mocks = {
+  Query: () => ({
+    deleteMe: () => "Hello I am an example to be deleted!",
+  }),
   Track: () => ({
     id: () => "c_0",
     title: () => "Astro Kitty, Space Explorer",
